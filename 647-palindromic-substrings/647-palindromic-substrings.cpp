@@ -1,20 +1,25 @@
 class Solution {
 public:
+    //Non Dynamic Programming Solution
     int countSubstrings(string s) {
-            vector<vector<int>> tab(s.size(), vector<int>(s.size()));
-            int count = 0;
-            for(int i = s.size() - 1; i >= 0; --i) {
-                for(int j = i; j < s.size(); ++j) {
-                    if (i == j) {
-                        tab[i][j] = 1;
-                    } else if (i + 1 == j) {
-                        tab[i][j] = s[i] == s[j] ? 1 : 0;
-                    } else {
-                        tab[i][j] = s[i] == s[j] ? tab[i+1][j-1] : 0;
-                    }
-                    count += tab[i][j];
-                }
+        int count = 0;
+        int n = s.length();
+        for(int i=0;i<n;i++){
+            int l = i,r=i;
+            //for odd length palindromes
+            while(l>=0 and r<n and s[l]==s[r]){
+                count++;
+                l--;
+                r++;
             }
-            return count;
+            l=i;
+            r=i+1;
+            while(l>=0 and r<n and s[l]==s[r]){
+                count++;
+                l--;
+                r++;
+            }
+        }
+        return count;
     }
     };
