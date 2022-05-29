@@ -1,16 +1,16 @@
 class Solution {
 public:
     int maxProduct(vector<string>& words) {
-        vector<string> count;
         int n = words.size();
         int ans=0;
+        string  count[n];
         for(int i=0;i<n;i++){
             string temp = string(26,'0'); 
             for(int j=0;j<words[i].length();j++){
                 // cout<< words[i][j]-'a'<<" ";
                 temp[words[i][j]-'a']='1';
             }
-            count.push_back(temp);
+            count[i] = temp;
             // cout<<temp<<endl;
             // cout<<endl;
         }
