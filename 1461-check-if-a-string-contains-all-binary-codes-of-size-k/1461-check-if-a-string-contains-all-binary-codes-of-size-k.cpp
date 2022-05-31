@@ -6,11 +6,13 @@ public:
         // cout<<end;
         if(n<k)
             return false;
-        for(int i=0;i<n-k+1;i++){
-            string temp = s.substr(i,k);
-            sub.insert(temp);
+        string str=s.substr(0,k);
+        sub.insert(str);
+        for(int i=k-1;i<n;i++){
+            str.erase(0,1);
+            str.push_back(s[i]);
+            sub.insert(str);
         }
-        
         if(sub.size()==pow(2,k))
             return true;
         return false;
