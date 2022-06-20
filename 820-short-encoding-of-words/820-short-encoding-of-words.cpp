@@ -1,7 +1,5 @@
 struct TrieNode{
     TrieNode* children[26];
-    bool endofword=false;
-    int len=0;
     
     bool isPresent(char c){
         return (children[c-'a']!=NULL);
@@ -17,9 +15,8 @@ public:
     int minimumLengthEncoding(vector<string>& words) {
         sort(words.begin(),words.end(),comparator);
         root = new TrieNode();
-        int n = words.size();
         int ans=0;
-        for(int i=0;i<n;i++){
+        for(int i=0;i<words.size();i++){
             string word = words[i];
             TrieNode* temp  = root;
             bool add=false;
@@ -34,11 +31,6 @@ public:
                 temp = temp->children[word[j]-'a'];
             }
         }
-        // TrieNode* node = root;
-        // for(int i=0;i<26;i++){
-        //     if(root->children[i]!=NULL)
-        //         cout<<root->children[i]<<endl;
-        // }
         return ans;
     }
 };
