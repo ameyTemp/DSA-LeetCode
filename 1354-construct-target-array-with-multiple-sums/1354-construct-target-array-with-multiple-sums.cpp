@@ -24,11 +24,6 @@ public:
             arr.pop();
             arr.push(temp);
         }
-        for(int i=0;i<target.size();i++){
-            if(arr.top()!=1)
-                return false;
-            arr.pop();
-        }
         return true;
     }
 };
