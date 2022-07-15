@@ -19,14 +19,11 @@ public:
         ListNode* temp1=even,*temp2=odd;
         temp=temp->next->next;
         int count=1;
-        // cout<<odd->val<<even->val<<temp->val<<endl;
         while(temp!=NULL){
             if(count%2==0){
-                // cout<<temp->val<<endl;
                 odd->next=new ListNode(temp->val);
                 odd=odd->next;
             }else{
-                cout<<temp->val;
                 even->next=new ListNode(temp->val);
                 even=even->next;
             }
