@@ -1,38 +1,26 @@
 class Solution {
 public:
     int longestPalindrome(vector<string>& words) {
-        map<string,int> count;
-        int n = words.size();
+        vector<vector<int>> count(26,vector<int>(26,0));
         int ans=0;
-        bool same=false;
-        for(int i=0;i<n;i++){   
-            count[words[i]]++;
-        }
-        for(int i=0;i<n;i++){
-            if(words[i][0]==words[i][1] and count[words[i]]%2==1 and !same){
-                same=true;
-                count[words[i]]--;
+        for(string w:words){
+            int a=w[0]-'a';
+            int b=w[1]-'a';
+            
+            if(count[b][a]>0){
+                ans+=4;
+                count[b][a]--;
+            }else{
+                count[a][b]++;
             }
-            string rev = "";
-            rev+=words[i][1];
-            rev+=words[i][0];
-            // cout<<rev<<" "<<words[i]<<" "<<count[words[i]]<<" "<<count[rev]<<endl;
-            if(count[words[i]]>0 and count[rev]>0){
-                if(words[i]!=rev){
-                    int minval = min(count[words[i]],count[rev]);
-                    ans+=4*minval;
-                    count[words[i]]-=minval;
-                    count[rev]-=minval;
-                }
-                if(words[i]==rev and count[words[i]]!=1){
-                    ans+=2*(count[words[i]] - count[words[i]]%2);
-                    count[words[i]]=0;
-                }
+            
+        }
+        for(int i=0;i<26;i++){
+            if(count[i][i]>0){
+                ans+=2;
+                break;
             }
         }
-        if(same)
-            ans+=2;
-        
         return ans;
     }
 };
