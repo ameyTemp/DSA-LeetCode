@@ -15,19 +15,18 @@ public:
             return head;
         ListNode* even=new ListNode(head->val);
         ListNode* odd=new ListNode(head->next->val);    
-        ListNode *temp=head;
         ListNode* temp1=even,*temp2=odd;
-        temp=temp->next->next;
+        head=head->next->next;
         int count=1;
-        while(temp!=NULL){
+        while(head!=NULL){
             if(count%2==0){
-                odd->next=new ListNode(temp->val);
+                odd->next=new ListNode(head->val);
                 odd=odd->next;
             }else{
-                even->next=new ListNode(temp->val);
+                even->next=new ListNode(head->val);
                 even=even->next;
             }
-            temp=temp->next;
+            head=head->next;
             count++;
         }
         even->next=temp2;
