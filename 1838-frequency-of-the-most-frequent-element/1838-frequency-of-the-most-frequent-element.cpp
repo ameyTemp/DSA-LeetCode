@@ -8,11 +8,11 @@ public:
         int ans=0;
         while(r<n){
             total+=nums[r];
-            long sum = (long)nums[r]*(r-l+1);
+            long sum = nums[r]*(long)(r-l+1);
             while(sum>(total+k)){
                 total-=nums[l];
                 l++;
-                sum =(long)nums[r]*(r-l+1);
+                sum = nums[r]*(long)(r-l+1);
             }
             ans=max(ans,r-l+1);
             r++;
