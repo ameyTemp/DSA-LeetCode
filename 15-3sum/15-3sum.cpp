@@ -14,10 +14,11 @@ public:
                     while(start<end && nums[start+1]==nums[start]){
                         start++;
                     }
+                    start++;
                     // start=end;
                     // break;
                 }
-                if(sum>=0){
+                if(sum>0){
                     end--;
                 }
                 if(sum<0){
