@@ -22,8 +22,25 @@ public:
 
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ans;
-        preorder(root,1,ans);
+        // preorder(root,1,ans);
         // cout<<height(root)<<endl;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            TreeNode* right = NULL;
+            int len = q.size();
+            for(int i=0;i<len;i++){
+                TreeNode * temp = q.front();
+                q.pop();
+                if(temp!=NULL){
+                    right = temp;
+                    q.push(temp->left);
+                    q.push(temp->right);
+                }   
+            }
+            if(right!=NULL)
+                ans.push_back(right->val);
+        }
         return ans;
     }
 };
