@@ -1,19 +1,29 @@
 class Solution {
 public:
+    int lessthanorequal(vector<vector<int>> matrix,int num){
+        int n = matrix.size();
+        int count=0;
+        for(int r=0;r<n;r++){
+            int c = n-1;
+            while(c>=0 and matrix[r][c]>num){
+                c--;
+            }
+            count+=c+1;
+        }
+        return count;
+    }
     int kthSmallest(vector<vector<int>>& matrix, int k) {
         int n = matrix.size();
-        priority_queue<vector<int>,vector<vector<int>>,greater<>> minHeap;
-        for(int i=0;i<min(n,k);i++){
-            minHeap.push({matrix[i][0],i,0});
-        }
+        int l = matrix[0][0];
+        int h = matrix[n-1][n-1];
         int ans;
-        for(int i=0;i<k;i++){
-            vector<int> temp = minHeap.top();
-            minHeap.pop();
-            int r = temp[1],c=temp[2];
-            ans = temp[0];
-            if(c+1<n){
-                minHeap.push({matrix[r][c+1],r,c+1});
+        while(l<=h){
+            int mid = (l+h)/2;
+            if(lessthanorequal(matrix,mid)>=k){
+                ans=mid;
+                h=mid-1;
+            }else{
+                l=mid+1;
             }
         }
         return ans;
